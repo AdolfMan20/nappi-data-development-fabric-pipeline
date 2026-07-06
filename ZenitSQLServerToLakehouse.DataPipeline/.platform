@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "ZenitSQLServerToLakehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "cfda9481-d581-9141-43b5-aa9e916f5238"
+  }
+}

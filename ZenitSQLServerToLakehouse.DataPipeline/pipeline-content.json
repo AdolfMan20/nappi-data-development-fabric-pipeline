@@ -1,0 +1,430 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "DataWarehouseSource",
+            "sqlReaderQuery": "SELECT *\nFROM dbo.metadata_config\nWHERE is_active = 1",
+            "partitionOption": "None",
+            "queryTimeout": "02:00:00"
+          },
+          "datasetSettings": {
+            "type": "DataWarehouseTable",
+            "typeProperties": {
+              "schema": "dbo",
+              "table": "metadata_config"
+            },
+            "schema": [],
+            "linkedService": {
+              "name": "Zenit_Warehouse",
+              "properties": {
+                "type": "DataWarehouse",
+                "typeProperties": {
+                  "artifactId": "d557815b-5a8b-937e-440e-6b916aca8d31",
+                  "endpoint": "whtfiyevjvmebdtoibbybt6jvm-tvhmk5wzrobezdpzvag6uwmjfi.datawarehouse.fabric.microsoft.com",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Config_Table_Lookup",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('Config_Table_Lookup').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "IfCondition",
+              "typeProperties": {
+                "expression": {
+                  "value": "@equals(item().load_type,'INCREMENTAL')",
+                  "type": "Expression"
+                },
+                "ifTrueActivities": [
+                  {
+                    "type": "Copy",
+                    "typeProperties": {
+                      "source": {
+                        "type": "SqlServerSource",
+                        "sqlReaderQuery": {
+                          "value": "@concat(\r\n\r\n'SELECT * FROM ',\r\n\r\nitem().source_schema,\r\n\r\n'.',\r\n\r\nitem().source_table,\r\n\r\n' WHERE ',\r\n\r\nif(\r\n\r\nempty(item().last_exec_date),\r\n\r\n'1=1',\r\n\r\nconcat(\r\n\r\nitem().incremental_column,\r\n\r\n' > ''',\r\n\r\nitem().last_exec_date,\r\n\r\n''''\r\n\r\n)\r\n\r\n)\r\n\r\n)",
+                          "type": "Expression"
+                        },
+                        "partitionOption": "None",
+                        "queryTimeout": "02:00:00",
+                        "datasetSettings": {
+                          "type": "SqlServerTable",
+                          "typeProperties": {
+                            "database": "SPIKE-DB-BI-NAPPI"
+                          },
+                          "schema": [],
+                          "externalReferences": {
+                            "connection": "a026cca0-be21-4f7d-857d-9cb21bab9c89"
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "sink": {
+                        "type": "LakehouseTableSink",
+                        "tableActionOption": "Append",
+                        "applyVOrder": false,
+                        "partitionOption": "None",
+                        "datasetSettings": {
+                          "type": "LakehouseTable",
+                          "typeProperties": {
+                            "schema": {
+                              "value": "@item().source_schema",
+                              "type": "Expression"
+                            },
+                            "table": {
+                              "value": "@item().destination_table",
+                              "type": "Expression"
+                            }
+                          },
+                          "schema": [],
+                          "linkedService": {
+                            "name": "Zenit_Lakehouse",
+                            "properties": {
+                              "type": "Lakehouse",
+                              "typeProperties": {
+                                "artifactId": "4d7125e9-002a-b9d2-4ab2-ac9fcdeb707e",
+                                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                                "rootFolder": "Tables"
+                              },
+                              "annotations": []
+                            }
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                        }
+                      },
+                      "enableStaging": false
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Copy_Incremental",
+                    "dependsOn": []
+                  },
+                  {
+                    "type": "Script",
+                    "typeProperties": {
+                      "scripts": [
+                        {
+                          "text": {
+                            "value": "@concat(\n'UPDATE dbo.metadata_config SET last_exec_date = ''',\nformatDateTime(utcNow(),'yyyy-MM-dd HH:mm:ss'),\n''' WHERE source_table = ''',\nitem().source_table,\n''''\n)",
+                            "type": "Expression"
+                          },
+                          "type": "NonQuery"
+                        }
+                      ],
+                      "scriptBlockExecutionTimeout": "02:00:00"
+                    },
+                    "linkedService": {
+                      "name": "Zenit_Warehouse",
+                      "properties": {
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                          "artifactId": "d557815b-5a8b-937e-440e-6b916aca8d31",
+                          "endpoint": "whtfiyevjvmebdtoibbybt6jvm-tvhmk5wzrobezdpzvag6uwmjfi.datawarehouse.fabric.microsoft.com",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Script_Update_Metadata_True_Branch",
+                    "dependsOn": [
+                      {
+                        "activity": "Copy_Incremental",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "ifFalseActivities": [
+                  {
+                    "type": "Copy",
+                    "typeProperties": {
+                      "source": {
+                        "type": "SqlServerSource",
+                        "partitionOption": "None",
+                        "queryTimeout": "02:00:00",
+                        "datasetSettings": {
+                          "type": "SqlServerTable",
+                          "typeProperties": {
+                            "schema": {
+                              "value": "@item().source_schema",
+                              "type": "Expression"
+                            },
+                            "table": {
+                              "value": "@item().source_table",
+                              "type": "Expression"
+                            },
+                            "database": "SPIKE-DB-BI-NAPPI"
+                          },
+                          "schema": [],
+                          "externalReferences": {
+                            "connection": "a026cca0-be21-4f7d-857d-9cb21bab9c89"
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "sink": {
+                        "type": "LakehouseTableSink",
+                        "tableActionOption": "OverwriteSchema",
+                        "applyVOrder": false,
+                        "partitionOption": "None",
+                        "datasetSettings": {
+                          "type": "LakehouseTable",
+                          "typeProperties": {
+                            "schema": {
+                              "value": "@item().source_schema",
+                              "type": "Expression"
+                            },
+                            "table": {
+                              "value": "@item().destination_table",
+                              "type": "Expression"
+                            }
+                          },
+                          "schema": [],
+                          "linkedService": {
+                            "name": "Zenit_Lakehouse",
+                            "properties": {
+                              "type": "Lakehouse",
+                              "typeProperties": {
+                                "artifactId": "4d7125e9-002a-b9d2-4ab2-ac9fcdeb707e",
+                                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                                "rootFolder": "Tables"
+                              },
+                              "annotations": []
+                            }
+                          },
+                          "annotations": []
+                        }
+                      },
+                      "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                          "allowDataTruncation": true,
+                          "treatBooleanAsNumber": false
+                        }
+                      },
+                      "enableStaging": false
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Copy_Full",
+                    "dependsOn": []
+                  },
+                  {
+                    "type": "Script",
+                    "typeProperties": {
+                      "scripts": [
+                        {
+                          "text": {
+                            "value": "@concat(\n'UPDATE dbo.metadata_config SET last_exec_date = ''',\nformatDateTime(utcNow(),'yyyy-MM-dd HH:mm:ss'),\n''' WHERE source_table = ''',\nitem().source_table,\n''''\n)",
+                            "type": "Expression"
+                          },
+                          "type": "NonQuery"
+                        }
+                      ],
+                      "scriptBlockExecutionTimeout": "02:00:00"
+                    },
+                    "linkedService": {
+                      "name": "Zenit_Warehouse",
+                      "properties": {
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                          "artifactId": "d557815b-5a8b-937e-440e-6b916aca8d31",
+                          "endpoint": "whtfiyevjvmebdtoibbybt6jvm-tvhmk5wzrobezdpzvag6uwmjfi.datawarehouse.fabric.microsoft.com",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "policy": {
+                      "timeout": "0.12:00:00",
+                      "retry": 0,
+                      "retryIntervalInSeconds": 30,
+                      "secureInput": false,
+                      "secureOutput": false
+                    },
+                    "name": "Script_Update_Metadata_False_Branch",
+                    "dependsOn": [
+                      {
+                        "activity": "Copy_Full",
+                        "dependencyConditions": [
+                          "Succeeded"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "name": "If_LoadType",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach_To_Lakehouse",
+        "dependsOn": [
+          {
+            "activity": "Config_Table_Lookup",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": true,
+          "items": {
+            "value": "@activity('Config_Table_Lookup').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "LakehouseTableSource",
+                  "datasetSettings": {
+                    "type": "LakehouseTable",
+                    "typeProperties": {
+                      "schema": {
+                        "value": "@item().source_schema",
+                        "type": "Expression"
+                      },
+                      "table": {
+                        "value": "@item().destination_table",
+                        "type": "Expression"
+                      }
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Zenit_Lakehouse",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "4d7125e9-002a-b9d2-4ab2-ac9fcdeb707e",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Tables"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "DataWarehouseSink",
+                  "tableOption": "autoCreate",
+                  "preCopyScript": "@concat(\n'TRUNCATE TABLE ',\nitem().source_schema,\n'.',\nitem().destination_table\n)",
+                  "allowCopyCommand": true,
+                  "copyCommandSettings": {},
+                  "writeBehavior": "Insert",
+                  "disableMetricsCollection": false,
+                  "datasetSettings": {
+                    "type": "DataWarehouseTable",
+                    "typeProperties": {
+                      "schema": "@item().source_schema",
+                      "table": "@item().destination_table"
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Zenit_Warehouse",
+                      "properties": {
+                        "type": "DataWarehouse",
+                        "typeProperties": {
+                          "artifactId": "d557815b-5a8b-937e-440e-6b916aca8d31",
+                          "endpoint": "whtfiyevjvmebdtoibbybt6jvm-tvhmk5wzrobezdpzvag6uwmjfi.datawarehouse.fabric.microsoft.com",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": true
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "Lakehouse_to_Warehouse_Copy_data",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "ForEach_Lakehouse_to_Warehouse",
+        "dependsOn": [
+          {
+            "activity": "ForEach_To_Lakehouse",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

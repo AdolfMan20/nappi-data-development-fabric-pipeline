@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "BussinesCentralToLakehouse"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3cf5d6d0-b794-99f5-46e8-fe9493f9d03e"
+  }
+}

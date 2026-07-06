@@ -1,0 +1,270 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Dataflow 1",
+  "queryGroups": [],
+  "documentLocale": "it-IT",
+  "gatewayObjectId": "cf32de9c-a03e-4391-92f0-50e05bbdd613",
+  "queriesMetadata": {
+    "ODataLink": {
+      "queryId": "7ad18a55-9eb9-480c-be72-3addb5d2909c",
+      "queryName": "ODataLink",
+      "loadEnabled": false
+    },
+    "Ubicazioni": {
+      "queryId": "017f3228-8e4f-49cd-81c7-3d555160f66b",
+      "queryName": "Ubicazioni",
+      "loadEnabled": false
+    },
+    "VendorList": {
+      "queryId": "74d70a3c-c66a-4e3f-96e4-9dc878508a31",
+      "queryName": "VendorList",
+      "loadEnabled": false
+    },
+    "Productorderheader": {
+      "queryId": "a0f79c53-bac3-41fb-b921-59f43924456d",
+      "queryName": "Productorderheader",
+      "loadEnabled": false
+    },
+    "ItemLedgerEntry": {
+      "queryId": "4c6f55c4-94d8-4469-8036-bcb7551025a2",
+      "queryName": "ItemLedgerEntry",
+      "loadEnabled": false
+    },
+    "Productorderlines": {
+      "queryId": "746b8618-386b-4f61-9888-6ec7ca0eac7a",
+      "queryName": "Productorderlines",
+      "loadEnabled": false
+    },
+    "Purchreceiptlines": {
+      "queryId": "b3b473bc-51d8-4f1d-b20e-e237a0eff0dc",
+      "queryName": "Purchreceiptlines",
+      "loadEnabled": false
+    },
+    "PurchaseOrderLines": {
+      "queryId": "0fb41f78-100d-4eb8-bb9e-bf94a90474e9",
+      "queryName": "PurchaseOrderLines",
+      "loadEnabled": false
+    },
+    "Itemunitofmeasure": {
+      "queryId": "564fcb2c-f8b5-4e61-ba5f-e0caab23d1ab",
+      "queryName": "Itemunitofmeasure",
+      "loadEnabled": false
+    },
+    "ProductBOMline": {
+      "queryId": "8fe6f923-55b3-49e5-b593-1b121d09293c",
+      "queryName": "ProductBOMline",
+      "loadEnabled": false
+    },
+    "Purchreceiptheader": {
+      "queryId": "aa2bb3b2-818d-4abf-9cfc-9a293f058fad",
+      "queryName": "Purchreceiptheader",
+      "loadEnabled": false
+    },
+    "ItemList": {
+      "queryId": "1efd4680-9eef-4a18-be87-b6e542b4076f",
+      "queryName": "ItemList",
+      "loadEnabled": false
+    },
+    "Postedwarehouseheader": {
+      "queryId": "b248bbe7-5cea-4c8e-a880-540ae8805a23",
+      "queryName": "Postedwarehouseheader",
+      "loadEnabled": false
+    },
+    "PurchaseOrderheader": {
+      "queryId": "2cc6a3b7-f2aa-4b1e-b543-3f87679bde3d",
+      "queryName": "PurchaseOrderheader",
+      "loadEnabled": false
+    },
+    "Postedwarehouselines": {
+      "queryId": "a9725d03-706c-4225-8988-0b16a410400b",
+      "queryName": "Postedwarehouselines",
+      "loadEnabled": false
+    },
+    "ProductBOMHeader": {
+      "queryId": "d41c2726-5670-4ff1-8c44-476f366bcb45",
+      "queryName": "ProductBOMHeader",
+      "loadEnabled": false
+    },
+    "EOSproductfamily": {
+      "queryId": "2ac74824-9c51-47eb-b30b-27679a109b9f",
+      "queryName": "EOSproductfamily",
+      "loadEnabled": false
+    },
+    "PurchaseInvoiceheader": {
+      "queryId": "f7c7016a-a432-442a-b74c-3baa1809d81b",
+      "queryName": "PurchaseInvoiceheader",
+      "loadEnabled": false
+    },
+    "Purchaseinvoicelines": {
+      "queryId": "05a1fa18-efb4-4731-9d1b-922ae04ea76e",
+      "queryName": "Purchaseinvoicelines",
+      "loadEnabled": false
+    },
+    "VendorLedgerEntry": {
+      "queryId": "54f556c5-e051-456e-b3ef-27d123f99b1d",
+      "queryName": "VendorLedgerEntry",
+      "loadEnabled": false
+    },
+    "CustLedgerEntry": {
+      "queryId": "1e5b4f7c-d715-40e3-b201-7ee73c577db0",
+      "queryName": "CustLedgerEntry",
+      "loadEnabled": false
+    },
+    "PurchRcptLine": {
+      "queryId": "7f8c9382-2e87-41d8-9f9a-54cb3f89d1de",
+      "queryName": "PurchRcptLine",
+      "loadEnabled": false
+    },
+    "Ubicazioni_DataDestination": {
+      "queryId": "c2be5389-6777-4657-8fb0-3684091a2229",
+      "queryName": "Ubicazioni_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "VendorList_DataDestination": {
+      "queryId": "f24035de-8d77-41a6-afe5-9247a0ba12ba",
+      "queryName": "VendorList_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Productorderheader_DataDestination": {
+      "queryId": "c24cddd2-985d-47a9-b01b-516ccae79679",
+      "queryName": "Productorderheader_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "ItemLedgerEntry_DataDestination": {
+      "queryId": "efc48bf2-6c7d-4e9e-9404-698e21f16176",
+      "queryName": "ItemLedgerEntry_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Productorderlines_DataDestination": {
+      "queryId": "e4469dde-46f3-4601-bf34-3884eabf396e",
+      "queryName": "Productorderlines_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Purchreceiptlines_DataDestination": {
+      "queryId": "57f48ef9-467d-4db2-8b89-8e406cfb5a4b",
+      "queryName": "Purchreceiptlines_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "PurchaseOrderLines_DataDestination": {
+      "queryId": "7704751c-e3f0-434c-ba9e-c0116e45ab34",
+      "queryName": "PurchaseOrderLines_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Itemunitofmeasure_DataDestination": {
+      "queryId": "d15bb8d1-5867-4beb-938c-cd0becbc419d",
+      "queryName": "Itemunitofmeasure_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "ProductBOMline_DataDestination": {
+      "queryId": "c0f62756-6b66-47fc-8bf8-9973b9440564",
+      "queryName": "ProductBOMline_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Purchreceiptheader_DataDestination": {
+      "queryId": "1c208712-0980-4cf6-9c9e-e44a0111a3be",
+      "queryName": "Purchreceiptheader_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "ItemList_DataDestination": {
+      "queryId": "a3809d8d-c7fa-4b2e-9ff8-9113bceff6a7",
+      "queryName": "ItemList_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Postedwarehouseheader_DataDestination": {
+      "queryId": "b48694e7-05db-44d6-b1b6-d233ddd8520c",
+      "queryName": "Postedwarehouseheader_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "PurchaseOrderheader_DataDestination": {
+      "queryId": "36e74965-1794-4a25-b954-625321bbaf40",
+      "queryName": "PurchaseOrderheader_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Postedwarehouselines_DataDestination": {
+      "queryId": "e67b216d-41c4-406e-a425-c707a906ab69",
+      "queryName": "Postedwarehouselines_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "ProductBOMHeader_DataDestination": {
+      "queryId": "34b03130-56c9-4bd6-bb21-a6c63f974f06",
+      "queryName": "ProductBOMHeader_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "EOSproductfamily_DataDestination": {
+      "queryId": "74c8d5d2-f33a-4e10-a6e1-8f9ca29161b4",
+      "queryName": "EOSproductfamily_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "PurchaseInvoiceheader_DataDestination": {
+      "queryId": "4972966b-63bd-479a-9e5e-cfdef897aae0",
+      "queryName": "PurchaseInvoiceheader_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "Purchaseinvoicelines_DataDestination": {
+      "queryId": "3d923700-11cf-4dab-8900-2dd4872b928e",
+      "queryName": "Purchaseinvoicelines_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "VendorLedgerEntry_DataDestination": {
+      "queryId": "a814da17-3f91-4865-852d-4a1e14d77a91",
+      "queryName": "VendorLedgerEntry_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "CustLedgerEntry_DataDestination": {
+      "queryId": "63c957fa-7b1c-47c1-a220-cbf3e758d9d0",
+      "queryName": "CustLedgerEntry_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "PurchRcptLine_DataDestination": {
+      "queryId": "64771712-bf7b-4a15-9c4f-a7cc66891ba5",
+      "queryName": "PurchRcptLine_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "http://srvbcdev01:7148/BC270API/ODataV4/Company('NAPPI')/",
+      "kind": "OData",
+      "connectionId": "{\"ClusterId\":\"cf32de9c-a03e-4391-92f0-50e05bbdd613\",\"DatasourceId\":\"e0877bf8-2e3c-41ef-a51a-86d5470721f4\"}"
+    },
+    {
+      "path": "http://srvbcdev01:7148/BC270API/ODataV4/Company('NAPPI')",
+      "kind": "OData",
+      "connectionId": "{\"ClusterId\":\"cf32de9c-a03e-4391-92f0-50e05bbdd613\",\"DatasourceId\":\"a3e03081-a518-4504-a834-42fe53929c93\"}"
+    },
+    {
+      "path": "http://srvbcapp01.nappi.local:7048/BC252/ODataV4/Company('NAPPI')/",
+      "kind": "OData",
+      "connectionId": "{\"ClusterId\":\"cf32de9c-a03e-4391-92f0-50e05bbdd613\",\"DatasourceId\":\"3f91ae06-dde3-4040-b476-2aea2413cd73\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"cf32de9c-a03e-4391-92f0-50e05bbdd613\",\"DatasourceId\":\"c5faa5b9-44ce-4323-a603-4dc9f89af31b\"}"
+    }
+  ]
+}
