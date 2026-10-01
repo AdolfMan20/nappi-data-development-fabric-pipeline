@@ -74,11 +74,11 @@
                         "datasetSettings": {
                           "type": "SqlServerTable",
                           "typeProperties": {
-                            "database": "SPIKE-DB-BI-NAPPI"
+                            "database": "AzureSourceDB"
                           },
                           "schema": [],
                           "externalReferences": {
-                            "connection": "a026cca0-be21-4f7d-857d-9cb21bab9c89"
+                            "connection": "2df3faf2-d038-437b-928c-dac24432234d"
                           },
                           "annotations": []
                         }
@@ -199,11 +199,11 @@
                               "value": "@item().source_table",
                               "type": "Expression"
                             },
-                            "database": "SPIKE-DB-BI-NAPPI"
+                            "database": "AzureSourceDB"
                           },
                           "schema": [],
                           "externalReferences": {
-                            "connection": "a026cca0-be21-4f7d-857d-9cb21bab9c89"
+                            "connection": "2df3faf2-d038-437b-928c-dac24432234d"
                           },
                           "annotations": []
                         }
